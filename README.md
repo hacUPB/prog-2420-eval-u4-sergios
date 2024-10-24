@@ -2,6 +2,10 @@
 # Unidad 3
 ---
 ## Documentación del proyecto
-Nombre:  
+Nombre: 
+Sergio Marín
+Sergio González
 ID:  
+000540019
+000548401
 ---
