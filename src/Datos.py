@@ -1,12 +1,40 @@
-import system
+
+import os
 
 def main_menu():
-    print("1: Buscar o listar archivos.\n2: Procesar archivos de texto (.txt)\n3: Procesarr archivos separados por comas (.csv)\n4: Salir")
+    print("1: Buscar archivos de esta ruta o Buscar archivos de otra ruta.\n2: Procesar archivos de texto (.txt)\n3: Procesar archivos separados por comas (.csv)\n4: Salir")
     opción = int(input("¿Qué desea hacer?: "))
     return opción
 
+def Listar_buscar_sub_menu():
+    print('Si desea ver los archivos de esta ruta, seleccione 1.\nSi desea ver los archivos de otra ruta, seleccione 2.')
+    Ruta = int(input('¿Qué desea hacer?'))
+    
+    if Ruta is 1:
+        Ruta = os.getcwd()  # Obtiene la ruta actual
+        archivos = os.listdir(Ruta)  # Lista los archivos en la ruta actual
+        if archivos:
+            print(f"Archivos en la ruta actual ({Ruta}):")
+            for archivo in archivos:
+                print(f"- {archivo}")
+        else:
+            print("No hay archivos en la ruta actual.")
+    if Ruta is 2:
+      Ruta = input("Ingrese la ruta de la carpeta que desea listar: ")
+    
+    try:
+        archivos = os.listdir(Ruta)  # Lista los archivos en la ruta proporcionada
+        print(f"\nArchivos en la ruta especificada ({Ruta}):")
+        if archivos:
+            for archivo in archivos:
+                print(f"- {archivo}")
+        else:
+            print("No hay archivos en esta Ruta.")
+    except FileNotFoundError:
+        print("La ruta especificada no existe.")
+
 def txt_sub_menu():
-    print("1: Contar número de palabras.\n2: Remplazar palabras en el texto.\n3: Contar el número de caracteres.\n4: Volver.")
+    print("1: Contar número de palabras.\n2: Reemplazar palabras en el texto.\n3: Contar el número de caracteres.\n4: Volver.")
     función_txt = int(input("¿Qué desea hacer?: "))
     return función_txt
 
@@ -21,11 +49,10 @@ def main():
         opción = main_menu()
 
         if opción == 1:
-            system ('cls')
-
-
+            Listar_buscar_sub_menu()
+            
         elif opción == 2:
-            system ('cls')
+            
             función_txt = txt_sub_menu
             if función_txt == 1:
                 pass
@@ -39,7 +66,7 @@ def main():
                 print("Opción no valida") 
 
         elif opción == 3:
-            system ('cls')
+            
             función_csv = csv_sub_menu
             if función_csv == 1:
                 pass
@@ -53,9 +80,10 @@ def main():
                 print("Opción no valida") 
 
         elif opción == 4:
+            print('Cerrando programa....')
             break
         else:
-            system ('cls')
+            
             print("Opción no valida")
 
          
