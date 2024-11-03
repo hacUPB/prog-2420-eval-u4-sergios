@@ -43,8 +43,10 @@ def csv_sub_menu():
     función_csv = int(input("¿Qué desea hacer?: "))
     return función_csv
 
+def contar_palabras_txt():
+    pass
+
 def main():
-    
     while True:
         opción = main_menu()
 
@@ -86,7 +88,7 @@ def main():
             
             print("Opción no valida")
 
-         
+pass
 
 
 if __name__ == "__main__":
