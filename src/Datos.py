@@ -38,11 +38,6 @@ def txt_sub_menu():
     función_txt = int(input("¿Qué desea hacer?: "))
     return función_txt
 
-def csv_sub_menu():
-    print("1: Reconocer textos.\n2: Estadísticas.\n3: Graficación de columnas.\n4: Volver")
-    función_csv = int(input("¿Qué desea hacer?: "))
-    return función_csv
-
 def contar_palabras_txt():
     archivo = input("Ingrese la ruta del archivo a procesar: ")
     ar = open(archivo, 'r')
@@ -50,6 +45,24 @@ def contar_palabras_txt():
     palabras = contenido.split()
     cant_palabras = len(palabras)
     print(f"El archivo tiene {cant_palabras} palabras")
+
+def reemplazar_palabras_txt():
+    pass
+
+def contar_caracteres_txt():
+    archivo = input("Ingrese la ruta del archivo a procesar: ")
+    ar = open(archivo, 'r')
+    caracteres = ar.read()
+    cant_caracteres_espacios = len(caracteres)
+    cant_caracteres_no_espacios = len(caracteres.replace(" ", ""))
+    print(f"El archivo tiene {cant_caracteres_espacios} caracteres incluyendo espacios, {cant_caracteres_no_espacios} y sin espacios")
+
+def csv_sub_menu():
+    print("1: Reconocer textos.\n2: Estadísticas.\n3: Graficación de columnas.\n4: Volver")
+    función_csv = int(input("¿Qué desea hacer?: "))
+    return función_csv
+
+
 
 
 def main():
@@ -60,19 +73,20 @@ def main():
             Listar_buscar_sub_menu()
             
         elif opción == 2:
-            función_txt = txt_sub_menu()
+            while True:
+                función_txt = txt_sub_menu()
 
-            if función_txt == 1:
-                contar_palabras_txt()
+                if función_txt == 1:
+                    contar_palabras_txt()
 
-            elif función_txt == 2:
-                pass
-            elif función_txt == 3:
-                pass
-            elif función_txt == 4:
-                break
-            else:
-                print("Opción no valida") 
+                elif función_txt == 2:
+                    pass
+                elif función_txt == 3:
+                    contar_caracteres_txt()
+                elif función_txt == 4:
+                    break
+                else:
+                    print("Opción no valida") 
 
         elif opción == 3:
             función_csv = csv_sub_menu()
