@@ -7,8 +7,8 @@ def main_menu():
     return opción
 
 def Listar_buscar_sub_menu():
-    print('Si desea ver los archivos de esta ruta, seleccione 1.\nSi desea ver los archivos de otra ruta, seleccione 2.')
-    Ruta = int(input('¿Qué desea hacer?'))
+    print('1: Ver los archivos de esta ruta.\n2: Ver los archivos de otra ruta.')
+    Ruta = int(input('¿Qué desea hacer?: '))
     
     if Ruta is 1:
         Ruta = os.getcwd()  # Obtiene la ruta actual
@@ -44,7 +44,12 @@ def csv_sub_menu():
     return función_csv
 
 def contar_palabras_txt():
-    pass
+    archivo = input("Ingrese la ruta del archivo a procesar: ")
+    with open(archivo, 'r') as file:
+        palabras = archivo.split()
+        cant_palabras = palabras.len()
+        print(f"El archivo tiene {cant_palabras} palabras")
+
 
 def main():
     while True:
@@ -54,22 +59,23 @@ def main():
             Listar_buscar_sub_menu()
             
         elif opción == 2:
+            txt_sub_menu()
             
-            función_txt = txt_sub_menu
-            if función_txt == 1:
+            if txt_sub_menu() == 1:
+                contar_palabras_txt()
+
+            elif txt_sub_menu() == 2:
                 pass
-            elif función_txt == 2:
+            elif txt_sub_menu() == 3:
                 pass
-            elif función_txt == 3:
-                pass
-            elif función_txt == 4:
+            elif txt_sub_menu() == 4:
                 break
             else:
                 print("Opción no valida") 
 
         elif opción == 3:
             
-            función_csv = csv_sub_menu
+            csv_sub_menu()
             if función_csv == 1:
                 pass
             elif función_csv == 2:
