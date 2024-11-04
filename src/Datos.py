@@ -1,5 +1,6 @@
 
 import os
+import csv
 
 def main_menu():
     print("1: Buscar archivos de esta ruta o Buscar archivos de otra ruta.\n2: Procesar archivos de texto (.txt)\n3: Procesar archivos separados por comas (.csv)\n4: Salir")
@@ -62,7 +63,14 @@ def csv_sub_menu():
     función_csv = int(input("¿Qué desea hacer?: "))
     return función_csv
 
-
+def primeras_lineas_csv():
+    archivo = input("Ingrese la ruta del archivo a procesar: ")
+    with open(archivo, 'r') as csv_ar:
+        for i in range():
+            primeras_lineas = csv_ar.readline(14)
+            lista = []
+            lista.append(primeras_lineas)
+        print(lista)
 
 
 def main():
@@ -92,7 +100,7 @@ def main():
             función_csv = csv_sub_menu()
 
             if función_csv == 1:
-                pass
+                primeras_lineas_csv()
             elif función_csv == 2:
                 pass
             elif función_csv == 3:
