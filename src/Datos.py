@@ -45,10 +45,11 @@ def csv_sub_menu():
 
 def contar_palabras_txt():
     archivo = input("Ingrese la ruta del archivo a procesar: ")
-    with open(archivo, 'r') as file:
-        palabras = archivo.split()
-        cant_palabras = len(palabras)
-        print(f"El archivo tiene {cant_palabras} palabras")
+    ar = open(archivo, 'r')
+    contenido = ar.read()
+    palabras = contenido.split()
+    cant_palabras = len(palabras)
+    print(f"El archivo tiene {cant_palabras} palabras")
 
 
 def main():
@@ -74,8 +75,8 @@ def main():
                 print("Opción no valida") 
 
         elif opción == 3:
-            
-            csv_sub_menu()
+            función_csv = csv_sub_menu()
+
             if función_csv == 1:
                 pass
             elif función_csv == 2:
