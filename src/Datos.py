@@ -47,7 +47,7 @@ def contar_palabras_txt():
     archivo = input("Ingrese la ruta del archivo a procesar: ")
     with open(archivo, 'r') as file:
         palabras = archivo.split()
-        cant_palabras = palabras.len()
+        cant_palabras = len(palabras)
         print(f"El archivo tiene {cant_palabras} palabras")
 
 
@@ -59,16 +59,16 @@ def main():
             Listar_buscar_sub_menu()
             
         elif opción == 2:
-            txt_sub_menu()
-            
-            if txt_sub_menu() == 1:
+            función_txt = txt_sub_menu()
+
+            if función_txt == 1:
                 contar_palabras_txt()
 
-            elif txt_sub_menu() == 2:
+            elif función_txt == 2:
                 pass
-            elif txt_sub_menu() == 3:
+            elif función_txt == 3:
                 pass
-            elif txt_sub_menu() == 4:
+            elif función_txt == 4:
                 break
             else:
                 print("Opción no valida") 
