@@ -11,7 +11,7 @@ def Listar_buscar_sub_menu():
     print('1: Ver los archivos de esta ruta.\n2: Ver los archivos de otra ruta.')
     Ruta = int(input('¿Qué desea hacer?: '))
     
-    if Ruta is 1:
+    if Ruta == 1:
         Ruta = os.getcwd()  # Obtiene la ruta actual
         archivos = os.listdir(Ruta)  # Lista los archivos en la ruta actual
         if archivos:
@@ -20,7 +20,7 @@ def Listar_buscar_sub_menu():
                 print(f"- {archivo}")
         else:
             print("No hay archivos en la ruta actual.")
-    if Ruta is 2:
+    if Ruta == 2:
       Ruta = input("Ingrese la ruta de la carpeta que desea listar: ")
     
     try:
@@ -48,7 +48,23 @@ def contar_palabras_txt():
     print(f"El archivo tiene {cant_palabras} palabras")
 
 def reemplazar_palabras_txt():
-    pass
+    Archivo = input('Por favor ingrese la ruta de su archivo: ') 
+    try:
+        with open(Archivo, 'r') as Lectura:
+            Texto_archivo = Lectura.read()
+
+            palabra_a_cambiar = input("¿Qué palabra desea cambiar?: ")
+            Palabra_nueva = input("Por qué palabra desea cambiarla?")
+            Cambio_Palabra = Texto_archivo.replace(palabra_a_cambiar, Palabra_nueva)
+
+            with open(Archivo, 'w') as escritura:
+                escritura.write(Cambio_Palabra)
+
+            print(f'El texto con el cambio de palabra ya se aplicó')
+            
+
+    except FileNotFoundError:
+        print("La ruta especificada no existe.")
 
 def contar_caracteres_txt():
     archivo = input("Ingrese la ruta del archivo a procesar: ")
@@ -88,9 +104,11 @@ def main():
                     contar_palabras_txt()
 
                 elif función_txt == 2:
-                    pass
+                    reemplazar_palabras_txt()
+
                 elif función_txt == 3:
                     contar_caracteres_txt()
+
                 elif función_txt == 4:
                     break
                 else:
