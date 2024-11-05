@@ -3,6 +3,9 @@ import os
 import csv
 import matplotlib.pyplot as plt
 
+x = []
+
+y = []
 
 def main_menu():
     print("1: Buscar archivos de esta ruta o Buscar archivos de otra ruta.\n2: Procesar archivos de texto (.txt)\n3: Procesar archivos separados por comas (.csv)\n4: Salir")
@@ -96,7 +99,16 @@ def primeras_lineas_csv():
         print("La ruta especificada no existe.")
 
 def Graficar_datos_csv():
-    pass
+    Archivo = input("Por favor ingrese la ruta del archivo csv: ")
+    Columna = input("Por favor ingrese la columna de datos numéricos que desea graficar: ")
+    
+    cantidad_datos = len(y)
+    for i in range(1, cantidad_datos+1):
+        x.append(i)
+
+    plt.plot(x,y)
+    plt.title("Grafico de columnas")
+
 
 def main():
     while True:
@@ -117,7 +129,6 @@ def main():
 
                 elif función_txt == 3:
                     contar_caracteres_txt()
-
                 elif función_txt == 4:
                     break
                 else:
@@ -131,7 +142,7 @@ def main():
             elif función_csv == 2:
                 pass
             elif función_csv == 3:
-                pass
+                Graficar_datos_csv()
             elif función_csv == 4:
                 break
             else:
