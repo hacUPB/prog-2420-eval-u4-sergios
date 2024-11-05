@@ -1,6 +1,8 @@
 
 import os
 import csv
+import matplotlib.pyplot as plt
+
 
 def main_menu():
     print("1: Buscar archivos de esta ruta o Buscar archivos de otra ruta.\n2: Procesar archivos de texto (.txt)\n3: Procesar archivos separados por comas (.csv)\n4: Salir")
@@ -81,13 +83,20 @@ def csv_sub_menu():
 
 def primeras_lineas_csv():
     archivo = input("Ingrese la ruta del archivo a procesar: ")
-    with open(archivo, 'r') as csv_ar:
-        for i in range():
-            primeras_lineas = csv_ar.readline(14)
-            lista = []
-            lista.append(primeras_lineas)
-        print(lista)
+    try:
 
+        with open(archivo, 'r') as csv_ar:
+            Lectura_archivo = csv.reader(csv_ar)
+            for i, Filas in enumerate(Lectura_archivo):
+                if i >= 15:
+                    break
+                print(Filas)
+
+    except FileNotFoundError:
+        print("La ruta especificada no existe.")
+
+def Graficar_datos_csv():
+    pass
 
 def main():
     while True:
