@@ -98,6 +98,23 @@ def primeras_lineas_csv():
     except FileNotFoundError:
         print("La ruta especificada no existe.")
 
+def estadísticas_csv():
+    lista = []
+    archivo = input("Ingrese la ruta del archivo a procesar: ")
+    a = int(input("Ingrese la columna a analizar: "))
+    with open(archivo, 'r') as csvfile:
+        lector = csv.reader(csvfile)
+        encabezado = next(lector)
+        for fila in lector:
+            try:
+                valor = float(fila[a])
+                lista.append(valor)
+            except ValueError:
+                continue
+    print(lista)
+    
+
+
 def Graficar_datos_csv():
     Archivo = input("Por favor ingrese la ruta del archivo csv: ")
     Columna = input("Por favor ingrese la columna de datos numéricos que desea graficar: ")
@@ -108,6 +125,7 @@ def Graficar_datos_csv():
 
     plt.plot(x,y)
     plt.title("Grafico de columnas")
+
 
 
 def main():
@@ -129,6 +147,7 @@ def main():
 
                 elif función_txt == 3:
                     contar_caracteres_txt()
+
                 elif función_txt == 4:
                     break
                 else:
@@ -139,10 +158,13 @@ def main():
 
             if función_csv == 1:
                 primeras_lineas_csv()
+
             elif función_csv == 2:
-                pass
+                estadísticas_csv()
+
             elif función_csv == 3:
                 Graficar_datos_csv()
+
             elif función_csv == 4:
                 break
             else:
@@ -154,9 +176,6 @@ def main():
         else:
             
             print("Opción no valida")
-
 pass
-
-
 if __name__ == "__main__":
     main()
