@@ -103,15 +103,26 @@ def estadísticas_csv():
     archivo = input("Ingrese la ruta del archivo a procesar: ")
     a = int(input("Ingrese la columna a analizar: "))
     with open(archivo, 'r') as csvfile:
-        lector = csv.reader(csvfile)
+        lector = csv.reader(csvfile, delimiter =';')
         encabezado = next(lector)
         for fila in lector:
             try:
                 valor = float(fila[a])
                 lista.append(valor)
+            
             except ValueError:
                 continue
-    print(lista)
+    if lista:
+        print(lista)
+        print(f"Hay {len(lista)} datos en la columna")
+        print(f"El valor máximo es {max(lista)}")
+        print(f"El valor mínimo es {min(lista)}")
+        print(f"El valor promedio es {sum(lista)/len(lista)}")
+    else:
+        print("Imposible calcular las estadísticas de esta columna, intente con otra.")
+
+
+
     
 
 
