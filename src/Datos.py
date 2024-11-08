@@ -136,14 +136,50 @@ def estadísticas_csv():
 
 def Graficar_datos_csv():
     Archivo = input("Por favor ingrese la ruta del archivo csv: ")
-    Columna = input("Por favor ingrese la columna de datos numéricos que desea graficar: ")
-    
-    cantidad_datos = len(y)
-    for i in range(1, cantidad_datos+1):
-        x.append(i)
+    try:
 
-    plt.plot(x,y)
-    plt.title("Grafico de columnas")
+        with open(archivo, 'r') as csvfile:
+            lector = csv.reader(csvfile)
+            encabezado = next(lector)  
+
+      
+            print("Columnas disponibles en el archivo:")
+            for i, columna in enumerate(encabezado):
+                print(f"{i}: {columna}")
+                
+           
+            indice_columna = int(input("Por favor ingrese el índice de la columna de datos numéricos que desea graficar: "))
+ 
+            
+            if indice_columna < 0 or indice_columna >= len(encabezado):
+                print("Índice de columna no válido.")
+                return
+
+            for i, fila in enumerate(lector, start=1):
+                try:
+                    
+                    valor = float(fila[indice_columna])
+                    x.append(i)  
+                    y.append(valor)
+                except ValueError:
+                    print(f"Advertencia: Valor no numérico en la fila {i+1}.")
+
+            
+            if not y:
+                print("No se encontraron datos numéricos en la columna seleccionada.")
+                return
+            
+            
+            plt.plot(x, y)
+            plt.title(f"Gráfico de la columna '{encabezado[indice_columna]}'")
+            plt.xlabel("Índice")
+            plt.ylabel("Valor")
+            plt.show()
+
+    except FileNotFoundError:
+        print("El archivo especificado no existe.")
+    except Exception as e:
+        print(f"Ocurrió un error: {e}")
 
 def main():
     while True:
