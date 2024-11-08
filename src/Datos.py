@@ -136,7 +136,7 @@ def estadísticas_csv():
             componente_derecho = componente_izquierdo + 1
             mediana = (datos[componente_izquierdo] + datos[componente_derecho])/2
         elif paridad == 1:
-            dato = (len(datos)/2) - 0.5
+            dato = (len(datos)//2) - 0.5
             mediana = datos[dato]
         print(f"La mediana es {mediana}")'''
 
@@ -230,6 +230,6 @@ def main():
         else:
             
             print("Opción no valida")
-pass
+
 if __name__ == "__main__":
     main()
