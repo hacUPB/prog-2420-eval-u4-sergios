@@ -2,6 +2,7 @@
 import os
 import csv
 import matplotlib.pyplot as plt
+import statistics
 
 def main_menu():
     try:        
@@ -36,7 +37,7 @@ def Listar_buscar_sub_menu():
                 print(f"- {archivo}")
         else:
             print("No hay archivos en esta Ruta.")
-    except FileNotFoundError:
+    except FileNotFoundError: 
         print("La ruta especificada no existe.")
 
 def txt_sub_menu():
@@ -44,10 +45,9 @@ def txt_sub_menu():
         función_txt = int(input("¿Qué desea hacer?: "))
         return función_txt
     
-
 def contar_palabras_txt():
-    try:
-        archivo = input("Ingrese la ruta del archivo a procesar: ")
+    archivo = input("Ingrese la ruta del archivo a procesar: ")
+    try:    
         ar = open(archivo, 'r')
         contenido = ar.read()
         palabras = contenido.split()
@@ -76,11 +76,14 @@ def reemplazar_palabras_txt():
 
 def contar_caracteres_txt():
     archivo = input("Ingrese la ruta del archivo a procesar: ")
-    ar = open(archivo, 'r')
-    caracteres = ar.read()
-    cant_caracteres_espacios = len(caracteres)
-    cant_caracteres_no_espacios = len(caracteres.replace(" ", ""))
-    print(f"El archivo tiene {cant_caracteres_espacios} caracteres incluyendo espacios, {cant_caracteres_no_espacios} y sin espacios")
+    try:
+        ar = open(archivo, 'r')
+        caracteres = ar.read()
+        cant_caracteres_espacios = len(caracteres)
+        cant_caracteres_no_espacios = len(caracteres.replace(" ", ""))
+        print(f"El archivo tiene {cant_caracteres_espacios} caracteres incluyendo espacios, {cant_caracteres_no_espacios} y sin espacios")
+    except FileNotFoundError:
+        print("La ruta especificada no existe.")
 
 def csv_sub_menu():
     print("1: Reconocer textos.\n2: Estadísticas.\n3: Graficación de columnas.\n4: Volver")
@@ -116,7 +119,16 @@ def estadísticas_csv():
             except ValueError:
                 continue
     if lista:
-        '''datos = sorted(lista)
+        print(lista)
+        print(f"Hay {len(lista)} datos en la columna")
+        print(f"El valor máximo es {max(lista)}")
+        print(f"El valor mínimo es {min(lista)}")
+        print(f"El valor promedio es {sum(lista)/len(lista)}")
+        print(f"La mediana es {statistics.median(sorted(lista))}")
+    else:
+        print("Imposible calcular las estadísticas de esta columna, intente con otra.")
+
+'''datos = sorted(lista)
         cantidad_total = (len(lista) + 1)
         paridad = cantidad_total % 2
         if paridad == 0:
@@ -125,17 +137,8 @@ def estadísticas_csv():
             mediana = (datos[componente_izquierdo] + datos[componente_derecho])/2
         elif paridad == 1:
             dato = (len(datos)/2) - 0.5
-            mediana = datos[dato]'''
-
-        print(lista)
-        print(f"Hay {len(lista)} datos en la columna")
-        print(f"El valor máximo es {max(lista)}")
-        print(f"El valor mínimo es {min(lista)}")
-        print(f"El valor promedio es {sum(lista)/len(lista)}")
-        '''print(f"La mediana es {mediana}")'''
-
-    else:
-        print("Imposible calcular las estadísticas de esta columna, intente con otra.")
+            mediana = datos[dato]
+        print(f"La mediana es {mediana}")'''
 
 def Graficar_datos_csv():
     archivo = input("Por favor ingrese la ruta del archivo csv: ")
@@ -178,7 +181,6 @@ def Graficar_datos_csv():
         print("El archivo especificado no existe.")
     except Exception as e:
         print(f"Ocurrió un error: {e}")
-
 
 def main():
     while True:
