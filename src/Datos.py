@@ -113,18 +113,26 @@ def estadísticas_csv():
             except ValueError:
                 continue
     if lista:
+        datos = sorted(lista)
+        cantidad_total = (len(lista) + 1)
+        paridad = cantidad_total % 2
+        if paridad == 0:
+            componente_izquierdo = len(datos)/2
+            componente_derecho = componente_izquierdo + 1
+            mediana = (datos[componente_izquierdo] + datos[componente_derecho])/2
+        elif paridad != 0:
+            dato = (len(datos)/2) + 0.5
+            mediana = datos[dato]
+
         print(lista)
         print(f"Hay {len(lista)} datos en la columna")
         print(f"El valor máximo es {max(lista)}")
         print(f"El valor mínimo es {min(lista)}")
         print(f"El valor promedio es {sum(lista)/len(lista)}")
+        print(F"La mediana es {mediana}")
+
     else:
         print("Imposible calcular las estadísticas de esta columna, intente con otra.")
-
-
-
-    
-
 
 def Graficar_datos_csv():
     Archivo = input("Por favor ingrese la ruta del archivo csv: ")
@@ -136,8 +144,6 @@ def Graficar_datos_csv():
 
     plt.plot(x,y)
     plt.title("Grafico de columnas")
-
-
 
 def main():
     while True:
