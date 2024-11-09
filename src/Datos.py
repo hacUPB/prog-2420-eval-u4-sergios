@@ -69,7 +69,7 @@ def reemplazar_palabras_txt():
             with open(Archivo, 'w') as escritura:
                 escritura.write(Cambio_Palabra)
 
-            print(f'El texto con el cambio de palabra ya se aplicó')
+            print(f'La palabra se modificó')
             
     except FileNotFoundError:
         print("La ruta especificada no existe.")
