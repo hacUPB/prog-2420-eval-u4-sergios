@@ -48,11 +48,11 @@ def txt_sub_menu():
 def contar_palabras_txt():
     archivo = input("Ingrese la ruta del archivo a procesar: ")
     try:    
-        ar = open(archivo, 'r')
-        contenido = ar.read()
-        palabras = contenido.split()
-        cant_palabras = len(palabras)
-        print(f"El archivo tiene {cant_palabras} palabras")
+        with open(archivo, 'r') as ar:
+            contenido = ar.read()
+            palabras = contenido.split()
+            cant_palabras = len(palabras)
+            print(f"El archivo tiene {cant_palabras} palabras")
     except FileNotFoundError:
         print("Error en la ruta de archivo")
 
@@ -77,11 +77,11 @@ def reemplazar_palabras_txt():
 def contar_caracteres_txt():
     archivo = input("Ingrese la ruta del archivo a procesar: ")
     try:
-        ar = open(archivo, 'r')
-        caracteres = ar.read()
-        cant_caracteres_espacios = len(caracteres)
-        cant_caracteres_no_espacios = len(caracteres.replace(" ", ""))
-        print(f"El archivo tiene {cant_caracteres_espacios} caracteres incluyendo espacios, {cant_caracteres_no_espacios} y sin espacios")
+        with open(archivo, 'r') as ar:
+            caracteres = ar.read()
+            cant_caracteres_espacios = len(caracteres)
+            cant_caracteres_no_espacios = len(caracteres.replace(" ", ""))
+            print(f"El archivo tiene {cant_caracteres_espacios} caracteres incluyendo espacios, {cant_caracteres_no_espacios} y sin espacios")
     except FileNotFoundError:
         print("La ruta especificada no existe.")
 
@@ -108,8 +108,9 @@ def estadísticas_csv():
     lista = []
     archivo = input("Ingrese la ruta del archivo a procesar: ")
     a = int(input("Ingrese la columna a analizar: "))
+    b = str(input("Ingrese el delimitador de su archivo: "))
     with open(archivo, 'r') as csvfile:
-        lector = csv.reader(csvfile, delimiter =';')
+        lector = csv.reader(csvfile, delimiter = b)
         encabezado = next(lector)
         for fila in lector:
             try:
@@ -128,23 +129,12 @@ def estadísticas_csv():
     else:
         print("Imposible calcular las estadísticas de esta columna, intente con otra.")
 
-'''datos = sorted(lista)
-        cantidad_total = (len(lista) + 1)
-        paridad = cantidad_total % 2
-        if paridad == 0:
-            componente_izquierdo = len(datos)/2
-            componente_derecho = componente_izquierdo + 1
-            mediana = (datos[componente_izquierdo] + datos[componente_derecho])/2
-        elif paridad == 1:
-            dato = (len(datos)//2) - 0.5
-            mediana = datos[dato]
-        print(f"La mediana es {mediana}")'''
-
 def Graficar_datos_csv():
+    c = str(input("Ingrese el delimitador de su archivo: "))
     archivo = input("Por favor ingrese la ruta del archivo csv: ")
     try:
         with open(archivo, 'r') as csvfile:
-            lector = csv.reader(csvfile, delimiter =';')
+            lector = csv.reader(csvfile, delimiter = c)
             encabezado = next(lector)  
 
             print("Columnas disponibles en el archivo:")
